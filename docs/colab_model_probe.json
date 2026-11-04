@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "scope": "HF generation/backward only; no optimizer step or RL",
+  "model": "Qwen/Qwen3.5-0.8B",
+  "torch": "2.8.0+cu128",
+  "transformers": "5.2.0",
+  "gpu": "NVIDIA L4",
+  "loss": 1.8488622903823853,
+  "grad_norm": 146.10178171837083,
+  "response": "4",
+  "peak_gb": 4.957214832305908
+}

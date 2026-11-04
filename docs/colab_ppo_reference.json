@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "scope": "One real Sokoban PPO step, not convergence",
+  "exit_code": 0,
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "gpu": "NVIDIA L4",
+  "global_step": 1,
+  "batch_size": 4,
+  "metrics": {
+    "actor/pg_loss": 0.06623384170234203,
+    "actor/grad_norm": 148.18161010742188,
+    "critic/vf_loss": 1.8579284846782684,
+    "critic/grad_norm": 955.1823120117188,
+    "critic/rewards/mean": -0.32500001788139343,
+    "train/CoordSokoban/episodic_return": 0.0,
+    "train/CoordSokoban/success": 0.0
+  },
+  "checkpoint": "/content/RAGEN/model_saving/ppo-reference-smoke-1/global_step_1"
+}

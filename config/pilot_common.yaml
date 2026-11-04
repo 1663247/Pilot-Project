@@ -1,0 +1,65 @@
+defaults:
+  - base
+  - _self_
+
+model_path: Qwen/Qwen2.5-0.5B-Instruct
+micro_batch_size_per_gpu: 1
+ppo_mini_batch_size: 4
+world_model:
+  enabled: false
+  observation_weight: 0.1
+  prediction_weight: 0.1
+
+seed:
+  train: 10000
+  val: 123
+algorithm:
+  adv_estimator: gae
+actor_rollout_ref:
+  actor:
+    use_torch_compile: false
+  ref:
+    use_torch_compile: false
+  rollout:
+    response_length: 256
+    max_model_len: 2048
+    tensor_model_parallel_size: 1
+    rollout_filter_value: 1.0
+trainer:
+  total_training_steps: 10
+  n_gpus_per_node: 1
+  val_before_train: true
+  test_freq: 5
+  validation_steps: 1
+  save_freq: 10
+  logger: [console]
+  metrics_jsonl: null
+agent_proxy:
+  max_turn: 3
+  max_actions_per_turn: 1
+collapse_detection:
+  first_turn_enabled: false
+  multi_turn_enabled: false
+es_manager:
+  train:
+    env_groups: 4
+    group_size: 2
+    env_configs:
+      tags: [CoordSokoban]
+      n_groups: [4]
+  val:
+    env_groups: 4
+    group_size: 1
+    env_configs:
+      tags: [CoordSokoban]
+      n_groups: [4]
+custom_envs:
+  CoordSokoban:
+    env_instruction: >-
+      Solve Sokoban by pushing the box onto the target. You cannot pull boxes or
+      move through walls. Think about the current board, then give exactly ONE
+      action per turn in <answer>Up</answer> (or Down/Left/Right).
+    max_tokens: 200
+    env_config:
+      observation_format: grid
+

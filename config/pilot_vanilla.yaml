@@ -1,0 +1,10 @@
+defaults:
+  - pilot_common
+  - _self_
+
+world_model:
+  enabled: false
+
+hydra:
+  searchpath:
+    - pkg://verl.trainer.config
